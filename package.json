@@ -1,0 +1,44 @@
+{
+  "name": "@vinorcola/utils",
+  "version": "1.0.0",
+  "description": "Basic utils to enhance common javascript operations.",
+  "keywords": [
+    "utils",
+    "common"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinorcola/utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vinorcola/utils/issues"
+  },
+  "homepage": "https://github.com/Vinorcola/utils#readme",
+  "type": "module",
+  "exports": {
+    "./classNames": {
+      "default": "./dist/ClassNames.js"
+    },
+    "./color": {
+      "default": "./dist/Color.js"
+    },
+    "./list": {
+      "default": "./dist/List.js"
+    },
+    "./Number": {
+      "default": "./dist/Number.js"
+    },
+    "./text": {
+      "default": "./dist/Text.js"
+    }
+  },
+  "author": "Vinorcola",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
