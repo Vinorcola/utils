@@ -36,9 +36,11 @@
   "private": false,
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint --fix"
   },
   "devDependencies": {
+    "@vinorcola/lint": "^1.0.5",
     "typescript": "^5.9.3"
   }
 }
