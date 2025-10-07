@@ -17,27 +17,35 @@
   "type": "module",
   "exports": {
     "./classNames": {
-      "default": "./dist/ClassNames.js"
+      "default": "./lib/ClassNames.js"
     },
     "./color": {
-      "default": "./dist/Color.js"
+      "default": "./lib/Color.js"
     },
     "./list": {
-      "default": "./dist/List.js"
+      "default": "./lib/List.js"
     },
     "./Number": {
-      "default": "./dist/Number.js"
+      "default": "./lib/Number.js"
     },
     "./text": {
-      "default": "./dist/Text.js"
+      "default": "./lib/Text.js"
     }
   },
   "author": "Vinorcola",
   "private": false,
   "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "build": "tsc",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A .",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@vinorcola/lint": "^1.0.5",
