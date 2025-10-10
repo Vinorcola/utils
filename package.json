@@ -28,6 +28,9 @@
     "./Number": {
       "default": "./lib/Number.js"
     },
+    "./object": {
+      "default": "./lib/Object.js"
+    },
     "./text": {
       "default": "./lib/Text.js"
     }
