@@ -25,7 +25,7 @@
     "./list": {
       "default": "./lib/List.js"
     },
-    "./Number": {
+    "./number": {
       "default": "./lib/Number.js"
     },
     "./object": {
