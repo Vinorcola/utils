@@ -1,6 +1,6 @@
 {
   "name": "@vinorcola/utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basic utils to enhance common javascript operations.",
   "keywords": [
     "utils",
