@@ -1,4 +1,5 @@
 const EMPTY_LIST: never[] = []
+
 /**
  * This function uses a const empty array to avoid building a new array at every render, which could potentially
  * triggers unwanted memo refresh or extra re-renders.

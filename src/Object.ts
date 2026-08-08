@@ -4,6 +4,11 @@ export type MapCallback<Input, Output, KeyType extends string | number> = (
     value: Input,
     index: number,
 ) => Output
+export type ForEachCallback<Input, KeyType extends string | number> = (
+    key: KeyType,
+    value: Input,
+    index: number,
+) => void
 export type ReducerCallback<Input, Output, KeyType extends string> = (
     output: Output,
     key: KeyType,
@@ -87,4 +92,14 @@ export function toList<Input, Output, KeyType extends string | number>(
     map: MapCallback<Input, Output, KeyType>,
 ): Output[] {
     return (Object.keys(input) as KeyType[]).map((key, index) => map(key, input[key], index))
+}
+
+/**
+ * Run through each key/values pair of the object.
+ */
+export function forEach<Input, KeyType extends string | number>(
+    input: Record<KeyType, Input>,
+    callback: ForEachCallback<Input, KeyType>,
+): void {
+    ;(Object.keys(input) as KeyType[]).forEach((key, index) => callback(key, input[key], index))
 }
