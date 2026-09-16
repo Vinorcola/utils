@@ -1,14 +1,14 @@
-export type FilterCallback<Input> = (key: string, value: Input) => boolean
-export type MapCallback<Input, Output, KeyType extends string | number> = (
-    key: KeyType,
-    value: Input,
-    index: number,
-) => Output
 export type ForEachCallback<Input, KeyType extends string | number> = (
     key: KeyType,
     value: Input,
     index: number,
 ) => void
+export type MapCallback<Input, Output, KeyType extends string | number> = (
+    key: KeyType,
+    value: Input,
+    index: number,
+) => Output
+export type FilterCallback<Input> = (key: string, value: Input) => boolean
 export type ReducerCallback<Input, Output, KeyType extends string> = (
     output: Output,
     key: KeyType,
@@ -17,19 +17,13 @@ export type ReducerCallback<Input, Output, KeyType extends string> = (
 export type MapKeyCallback<Input, KeyType extends string | number> = (value: Input, index: number) => KeyType
 
 /**
- * Returns a new filtered key/values object.
- *
- * You can filter each item by key and/or value.
+ * Run through each key/values pair of the object.
  */
-export function filter<Input>(input: Record<string, Input>, filter: FilterCallback<Input>): Record<string, Input> {
-    const output: Record<string, Input> = {}
-    Object.keys(input).forEach((key) => {
-        if (filter(key, input[key])) {
-            output[key] = input[key]
-        }
-    })
-
-    return output
+export function forEach<Input, KeyType extends string | number>(
+    input: Record<KeyType, Input>,
+    callback: ForEachCallback<Input, KeyType>,
+): void {
+    ;(Object.keys(input) as KeyType[]).forEach((key, index) => callback(key, input[key], index))
 }
 
 /**
@@ -44,6 +38,22 @@ export function map<Input, Output, KeyType extends string = string>(
     const output: Record<string, Output> = {}
     ;(Object.keys(input) as KeyType[]).forEach((key, index) => {
         output[key] = map(key, input[key], index)
+    })
+
+    return output
+}
+
+/**
+ * Returns a new filtered key/values object.
+ *
+ * You can filter each item by key and/or value.
+ */
+export function filter<Input>(input: Record<string, Input>, filter: FilterCallback<Input>): Record<string, Input> {
+    const output: Record<string, Input> = {}
+    Object.keys(input).forEach((key) => {
+        if (filter(key, input[key])) {
+            output[key] = input[key]
+        }
     })
 
     return output
@@ -92,14 +102,4 @@ export function toList<Input, Output, KeyType extends string | number>(
     map: MapCallback<Input, Output, KeyType>,
 ): Output[] {
     return (Object.keys(input) as KeyType[]).map((key, index) => map(key, input[key], index))
-}
-
-/**
- * Run through each key/values pair of the object.
- */
-export function forEach<Input, KeyType extends string | number>(
-    input: Record<KeyType, Input>,
-    callback: ForEachCallback<Input, KeyType>,
-): void {
-    ;(Object.keys(input) as KeyType[]).forEach((key, index) => callback(key, input[key], index))
 }
