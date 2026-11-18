@@ -33,6 +33,9 @@
     },
     "./text": {
       "default": "./lib/Text.js"
+    },
+    "./types": {
+      "types": "./lib/Types.d.ts"
     }
   },
   "author": "Vinorcola",
