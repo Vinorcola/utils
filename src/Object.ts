@@ -50,14 +50,14 @@ export function map<Input, Output, KeyType extends string = string>(
  */
 export async function awaitAll<Input extends Record<string, Promise<any>>>(
     input: Input,
-): Promise<Record<string, Awaited<Input[string]>>> {
+): Promise<Record<keyof Input, Awaited<Input[string]>>> {
     const resolved = await Promise.all(Object.values(input))
 
     return fromList(
         Object.keys(input),
         (key) => key,
         (_, __, index) => resolved[index],
-    )
+    ) as Record<keyof Input, Awaited<Input[string]>>
 }
 
 /**
